@@ -21,12 +21,10 @@ public class PersonController {
         this.personService = personService;
     }
     
-    @RequestMapping(value = "/simple", method = RequestMethod.POST)
-    public String processSimple(@RequestParam String login, @RequestParam String password,
-                                @RequestParam String email, Model model) {
-        Person person = new Person(login, password, email);
-        model.addAttribute("person", person);
-        return "form/success";
+    @RequestMapping(value = "/search", method = RequestMethod.POST)
+    public String processSimple(@RequestParam String search, Model model) {
+        // serach books
+        return "form/search results";
     }
 
 	@RequestMapping(value = "/register", method = RequestMethod.GET)

@@ -9,22 +9,22 @@ import javax.transaction.Transactional;
 
 import org.springframework.stereotype.Component;
 
-import pl.coderslab.entity.Person;
+import pl.coderslab.entity.Burger;
 
 @Component
 @Transactional
-public class PersonDao {
+public class BurgerDao {
     @PersistenceContext
     EntityManager entityManager;
     
-    public Person savePerson(Person entity) {
+    public Burger saveBurger(Burger entity) {
         entityManager.persist(entity);
         return entity;
     }
     
-    public List<Person> getList(){
-    	Query query = entityManager.createQuery("SELECT p FROM Person p");
-    	List<Person> books = query.getResultList();
-    	return books;
+    public List<Burger> getList(){
+    	Query query = entityManager.createQuery("SELECT p FROM Burger p");
+    	List<Burger> burgers = query.getResultList();
+    	return burgers;
     }
 }
