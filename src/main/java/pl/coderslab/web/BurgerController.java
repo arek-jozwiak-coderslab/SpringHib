@@ -5,8 +5,10 @@ import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.ModelAttribute;
+import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
+import org.springframework.web.bind.annotation.ResponseBody;
 
 import pl.coderslab.dao.BurgerDao;
 import pl.coderslab.entity.Burger;
@@ -27,13 +29,21 @@ public class BurgerController {
 	@RequestMapping(value = "/burger/add", method = RequestMethod.POST)
 	public String processForm(@ModelAttribute Burger entity) {
 		burgerDao.saveBurger(entity);
-		return "redirect: burger/list";
+		return "redirect: list";
 	}
 	
 	@RequestMapping(value = "burger/list", method = RequestMethod.GET)
 	public String list(Model model) {
 		model.addAttribute("burgers", burgerDao.getList());
 		return "burger/list";
+	}
+	
+	@RequestMapping(value = "burger/delete/{id}",  method = RequestMethod.GET)
+	public String delete(@PathVariable long id) {
+		System.out.println(id);
+		Burger burger = burgerDao.findById(id);
+		burgerDao.delete(burger);
+		return "redirect: ../list";
 	}
 	
 
