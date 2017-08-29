@@ -19,7 +19,6 @@ public class BookController {
 	@ResponseBody
 	public String addBook(){
 		Book book = new Book();
-		book.setAuthor("Bruce Eckel");
 		book.setTitle("Thinking in java");
 		book.setDescription("abuot java programming");
 		bookDao.saveBook(book);
