@@ -7,6 +7,10 @@ import javax.persistence.Id;
 import javax.persistence.JoinColumn;
 import javax.persistence.ManyToOne;
 import javax.persistence.OneToOne;
+import javax.validation.constraints.NotNull;
+import javax.validation.constraints.Size;
+
+import org.hibernate.validator.constraints.NotBlank;
 
 @Entity(name = "Person")
 public class Person {
@@ -37,9 +41,12 @@ public class Person {
 	public void setPersonGroup(PersonGroup personGroup) {
 		this.personGroup = personGroup;
 	}
-
+	
 	private String login;
+	@NotNull
+	@Size(min = 2, max = 30)
 	private String password;
+	@NotBlank
 	private String email;
 
 	public PersonDetails getPersonDetails() {
