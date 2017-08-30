@@ -10,14 +10,21 @@
 <body>
 	<h1>Add person</h1>
 	<form:form method="post" modelAttribute="person">
+	<div>
+	<h2>Popraw błędy</h2>
+	<form:errors path="*" />
+	</div>
 	Login:
 		<form:input path="login" />
 	Password:
 		<form:password path="password" />
+		<form:errors path="password" cssClass="error" element="div"/>
+		
 	Email:				
 		<form:input path="email" />
-    	<form:select path="personGroup" items="${groups}"
-    	 itemValue="id" itemLabel="name"/>
+		<form:errors path="email" />
+		<form:select path="personGroup" items="${groups}" itemValue="id"
+			itemLabel="name" />
 		<input type="submit" value="Save">
 	</form:form>
 </body>

@@ -4,11 +4,13 @@ import java.util.Collection;
 import java.util.Set;
 
 import javax.validation.ConstraintViolation;
+import javax.validation.Valid;
 import javax.validation.Validator;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
+import org.springframework.validation.BindingResult;
 import org.springframework.web.bind.annotation.ModelAttribute;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
@@ -45,8 +47,7 @@ public class PersonController {
 		Set<ConstraintViolation<Person>> violations = validator.validate(person);
 		if (!violations.isEmpty()) {
 			for (ConstraintViolation<Person> constraintViolation : violations) {
-				System.out.println(constraintViolation.getPropertyPath() + " "
-			+ constraintViolation.getMessage());
+				System.out.println(constraintViolation.getPropertyPath() + " " + constraintViolation.getMessage());
 			}
 		} else {
 			// save object
@@ -75,7 +76,10 @@ public class PersonController {
 	}
 
 	@RequestMapping(value = "/register", method = RequestMethod.POST)
-	public String processForm(@ModelAttribute Person person) {
+	public String processForm(@Valid Person person, BindingResult result) {
+		if (result.hasErrors()) {
+			return "person/registerForm";
+		}
 		personService.create(person);
 		return "person/success";
 	}
