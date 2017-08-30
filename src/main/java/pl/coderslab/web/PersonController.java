@@ -6,11 +6,14 @@ import java.util.Set;
 import javax.validation.ConstraintViolation;
 import javax.validation.Valid;
 import javax.validation.Validator;
+import javax.validation.groups.Default;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.validation.BindingResult;
+import org.springframework.validation.annotation.Validated;
+import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.ModelAttribute;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
@@ -66,8 +69,9 @@ public class PersonController {
 	public Collection<PersonGroup> populateGropups() {
 		return this.personGroupDao.getList();
 	}
-
-	@RequestMapping(value = "/register", method = RequestMethod.GET)
+	
+//	@RequestMapping(value = "/register", method = RequestMethod.GET)
+	@GetMapping("/register")
 	public String showRegistrationForm(Model model) {
 		// model.addAttribute("groups",personGroupDao.getList() ); // == method
 		// populateGropups
@@ -76,7 +80,7 @@ public class PersonController {
 	}
 
 	@RequestMapping(value = "/register", method = RequestMethod.POST)
-	public String processForm(@Valid Person person, BindingResult result) {
+	public String processForm(@Validated({Default.class}) @Valid Person person, BindingResult result) {
 		if (result.hasErrors()) {
 			
 			return "person/registerForm";

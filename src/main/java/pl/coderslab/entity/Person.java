@@ -9,10 +9,12 @@ import javax.persistence.ManyToOne;
 import javax.persistence.OneToOne;
 import javax.validation.constraints.NotNull;
 import javax.validation.constraints.Size;
+import javax.validation.groups.Default;
 
 import org.hibernate.validator.constraints.NotBlank;
 
 import pl.coderslab.validator.StartWith;
+import pl.coderslab.validator.ValidationGroupName;
 
 @Entity(name = "Person")
 public class Person {
@@ -43,12 +45,13 @@ public class Person {
 	public void setPersonGroup(PersonGroup personGroup) {
 		this.personGroup = personGroup;
 	}
-	@StartWith
+	@StartWith(value="B",value2="C")
 	private String login;
 	@NotNull
 	@Size(min = 2, max = 30)
 	private String password;
-	@NotBlank
+	@NotBlank(groups={ValidationGroupName.class})
+	@NotNull(groups={ValidationGroupName.class})
 	private String email;
 
 	public PersonDetails getPersonDetails() {

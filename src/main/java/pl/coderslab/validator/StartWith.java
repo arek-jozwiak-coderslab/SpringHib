@@ -11,6 +11,9 @@ import javax.validation.Payload;
 @Target({ ElementType.METHOD, ElementType.FIELD })
 @Retention(RetentionPolicy.RUNTIME)
 public @interface StartWith {
+	String value();
+	String value2();
+
 	String message() default "startWith.error.message";
 
 	Class<?>[] groups() default {};
