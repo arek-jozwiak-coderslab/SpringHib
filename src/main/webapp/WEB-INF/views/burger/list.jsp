@@ -21,8 +21,9 @@
 				<td>${burger.localName}</td>
 				<td>${burger.size}</td>
 				<td>
-				<a href = "<c:url value = "/burger/delete/${burger.id}"/>">USUŃ</a>
+			<!-- 	<a href = "<c:url value = "/burger/delete/${burger.id}"/>">USUŃ</a>
 				<a href="${pageContext.servletContext.contextPath}/burger/delete/${burger.id}">Usuń</a>
+				-->
 				</td>
 			</tr>
 		</c:forEach>

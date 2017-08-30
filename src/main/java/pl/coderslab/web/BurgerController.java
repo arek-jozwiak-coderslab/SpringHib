@@ -26,6 +26,13 @@ public class BurgerController {
 		return "burger/add";
 	}
 	
+	@GetMapping("/burger/edit/{id}")
+	public String editBurger(Model model, @PathVariable long id){
+		Burger burger = burgerDao.findById(id);
+		model.addAttribute("burger", burger);
+		return "burger/add";
+	}
+	
 	@RequestMapping(value = "/burger/add", method = RequestMethod.POST)
 	public String processForm(@ModelAttribute Burger entity) {
 		burgerDao.saveBurger(entity);
