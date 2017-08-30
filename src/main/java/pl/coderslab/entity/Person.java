@@ -4,25 +4,35 @@ import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
+import javax.persistence.OneToOne;
 
 @Entity(name = "Person")
 public class Person {
-    @Id
+	@Id
 	@GeneratedValue(strategy = GenerationType.IDENTITY)
-    private Long id;
-    
-    public Person() {
+	private Long id;
+
+	public Person() {
 	}
-        
+
 	public Person(String login, String password, String email) {
 		this.login = login;
 		this.password = password;
 		this.email = email;
 	}
-
+	@OneToOne
+	private PersonDetails personDetails;
 	private String login;
 	private String password;
 	private String email;
+
+	public PersonDetails getPersonDetails() {
+		return personDetails;
+	}
+
+	public void setPersonDetails(PersonDetails personDetails) {
+		this.personDetails = personDetails;
+	}
 
 	public Long getId() {
 		return id;
@@ -55,6 +65,5 @@ public class Person {
 	public void setEmail(String email) {
 		this.email = email;
 	}
-    
-	
+
 }
