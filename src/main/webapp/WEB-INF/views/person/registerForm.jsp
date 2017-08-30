@@ -16,6 +16,7 @@
 		<form:password path="password" />
 	Email:				
 		<form:input path="email" />
+		<form:select path="personGroup" items="${groups}" itemValue="id" itemLabel="name"/>
 		<input type="submit" value="Save">
 	</form:form>
 </body>
