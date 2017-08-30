@@ -70,8 +70,7 @@ public class PersonController {
 		return this.personGroupDao.getList();
 	}
 	
-//	@RequestMapping(value = "/register", method = RequestMethod.GET)
-	@GetMapping("/register")
+	@RequestMapping(value = "/register", method = RequestMethod.GET)
 	public String showRegistrationForm(Model model) {
 		// model.addAttribute("groups",personGroupDao.getList() ); // == method
 		// populateGropups
