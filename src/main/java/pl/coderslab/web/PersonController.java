@@ -78,6 +78,7 @@ public class PersonController {
 	@RequestMapping(value = "/register", method = RequestMethod.POST)
 	public String processForm(@Valid Person person, BindingResult result) {
 		if (result.hasErrors()) {
+			
 			return "person/registerForm";
 		}
 		personService.create(person);

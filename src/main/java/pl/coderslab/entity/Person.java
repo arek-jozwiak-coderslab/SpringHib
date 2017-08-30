@@ -12,6 +12,8 @@ import javax.validation.constraints.Size;
 
 import org.hibernate.validator.constraints.NotBlank;
 
+import pl.coderslab.validator.StartWith;
+
 @Entity(name = "Person")
 public class Person {
 	@Id
@@ -41,7 +43,7 @@ public class Person {
 	public void setPersonGroup(PersonGroup personGroup) {
 		this.personGroup = personGroup;
 	}
-	
+	@StartWith
 	private String login;
 	@NotNull
 	@Size(min = 2, max = 30)
