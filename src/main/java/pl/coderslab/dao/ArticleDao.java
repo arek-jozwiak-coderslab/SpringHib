@@ -7,6 +7,7 @@ import javax.persistence.PersistenceContext;
 import javax.persistence.Query;
 import javax.transaction.Transactional;
 
+import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Component;
 
 import pl.coderslab.entity.Article;
@@ -18,7 +19,7 @@ import pl.coderslab.entity.Burger;
 public class ArticleDao {
 	@PersistenceContext
 	EntityManager entityManager;
-
+	
 	public Article saveArticle(Article entity) {
 		entityManager.persist(entity);
 		return entity;
@@ -37,6 +38,11 @@ public class ArticleDao {
     	return books;
     }
 	
-
+	public List<Article> getByCategoryId(long category) {
+		Query query = entityManager.createQuery("SELECT a FROM Article a where a.category.id = :category");
+		query.setParameter("category", category);
+		List<Article> burgers = query.getResultList();
+		return burgers;
+	}
 
 }
