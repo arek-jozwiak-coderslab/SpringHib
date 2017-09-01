@@ -33,11 +33,7 @@ public class BurgerController {
 		return "burger/add";
 	}
 	
-	@RequestMapping(value = "/burger/add", method = RequestMethod.POST)
-	public String processForm(@ModelAttribute Burger entity) {
-		burgerDao.saveBurger(entity);
-		return "redirect: list";
-	}
+
 	
 	@RequestMapping(value = "burger/list", method = RequestMethod.GET)
 	public String list(Model model) {

@@ -1,14 +1,12 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8"
 	pageEncoding="UTF-8"%>
 <%@ taglib uri="http://java.sun.com/jsp/jstl/core" prefix="c"%>
-<html>
-<head>
-<meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
-<title>Insert title here</title>
-</head>
-<body>
+<jsp:include page="../header.jsp" />  
+        <div id="page-wrapper">
+            <div class="row">
+                <div class="col-lg-12">
 	<h1>List books</h1>
-	<table>
+	<table class="table table-striped table-bordered table-hover dataTable no-footer dtr-inline">
 		<tr>
 			<th>Name</th>
 			<th>LocalName</th>
@@ -28,5 +26,7 @@
 			</tr>
 		</c:forEach>
 	</table>
-</body>
-</html>
+	</div>
+	</div>
+	</div>
+<jsp:include page="../footer.jsp" />  

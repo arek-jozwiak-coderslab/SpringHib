@@ -30,9 +30,6 @@ public class RepoController {
 	}
 	
 	
-	
-	
-
 	@GetMapping("/checkrepo")
 	@ResponseBody
 	public String showList(Model model) {
@@ -41,7 +38,7 @@ public class RepoController {
 		builder.append(books.toString());
 
 		List<Book> books2= bookRepository.findByTitleIgnoreCaseContaining("Thinking");
-		builder.append("<br/>");
+		builder.append("<br/><hr/>");
 		builder.append(books2.toString());
 		return builder.toString();
 	}

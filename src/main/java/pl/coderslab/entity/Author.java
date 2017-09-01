@@ -2,11 +2,18 @@ package pl.coderslab.entity;
 
 import java.util.List;
 
-public class Author {
+import javax.persistence.Entity;
+import javax.persistence.GeneratedValue;
+import javax.persistence.GenerationType;
+import javax.persistence.Id;
 
+@Entity
+public class Author {
+	@Id
+	@GeneratedValue(strategy = GenerationType.IDENTITY)
+	private Long id;
 	private String firstName;
 	private String lastName;
-	private List<Book> books;
 	public String getFirstName() {
 		return firstName;
 	}
@@ -19,11 +26,4 @@ public class Author {
 	public void setLastName(String lastName) {
 		this.lastName = lastName;
 	}
-	public List<Book> getBooks() {
-		return books;
-	}
-	public void setBooks(List<Book> books) {
-		this.books = books;
-	}
-	
 }
