@@ -20,6 +20,7 @@ import org.springframework.web.servlet.view.InternalResourceViewResolver;
 import org.springframework.web.servlet.view.JstlView;
 
 import pl.coderslab.converters.PersonGroupConverter;
+import pl.coderslab.converters.PublisherConverter;
 
 @Configuration
 @EnableWebMvc
@@ -59,6 +60,12 @@ public class AppConfig extends WebMvcConfigurerAdapter {
 	@Override
 	public void addFormatters(FormatterRegistry registry) {
 		registry.addConverter(getPersonGroupConverter());
+		registry.addConverter(getPublisherConverter());
+	}
+	
+	@Bean
+	public PublisherConverter getPublisherConverter() {
+		return new PublisherConverter();
 	}
 
 	@Bean

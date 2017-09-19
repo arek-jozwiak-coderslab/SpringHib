@@ -18,7 +18,7 @@
 		<form:textarea path="description" />
 	Publisher:
 	<form:select itemValue="id" itemLabel="name"
-             path="publisher.id" items="${publishers}"/>
+             path="publisher" items="${publishers}"/>
 		<input type="submit" value="Save">
 	</form:form>
 </body>
