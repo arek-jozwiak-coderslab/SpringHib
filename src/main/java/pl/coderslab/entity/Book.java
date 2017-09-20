@@ -1,23 +1,65 @@
 package pl.coderslab.entity;
 
+import java.util.List;
+
 import javax.persistence.Entity;
+import javax.persistence.FetchType;
 import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
+import javax.persistence.ManyToMany;
 import javax.persistence.ManyToOne;
+import javax.validation.constraints.Size;
+
+import org.hibernate.validator.constraints.NotBlank;
+
 
 @Entity
 public class Book {
 	@Id
 	@GeneratedValue(strategy = GenerationType.IDENTITY)
 	private Long id;
+	@NotBlank
+	@Size(min=3)
 	private String title;
 	@ManyToOne
 	private Author author;
 	@ManyToOne
 	private Publisher publisher;
+	@ManyToMany(fetch=FetchType.EAGER)
+//	@ManyToMany
+	private List<Author> authors;
+	
+	private boolean active;
+	
+	
+	public boolean isActive() {
+		return active;
+	}
+
+	public void setActive(boolean active) {
+		this.active = active;
+	}
+
 	private String description;
 	private int rating;
+	
+
+	public Author getAuthor() {
+		return author;
+	}
+
+	public void setAuthor(Author author) {
+		this.author = author;
+	}
+
+	public List<Author> getAuthors() {
+		return authors;
+	}
+
+	public void setAuthors(List<Author> authors) {
+		this.authors = authors;
+	}
 
 	public Long getId() {
 		return id;

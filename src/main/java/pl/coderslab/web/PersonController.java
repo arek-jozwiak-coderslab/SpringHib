@@ -47,6 +47,8 @@ public class PersonController {
 		Person person = new Person();
 		person.setLogin("jan");
 		person.setPassword("2");
+		person.setTitle("qazw");
+		person.setRating(1);
 		Set<ConstraintViolation<Person>> violations = validator.validate(person);
 		if (!violations.isEmpty()) {
 			for (ConstraintViolation<Person> constraintViolation : violations) {

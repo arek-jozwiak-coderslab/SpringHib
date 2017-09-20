@@ -6,20 +6,39 @@
 <head>
 <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
 <title>Insert title here</title>
+<style type="text/css">
+.error {
+	background-color: red;
+	color: white;
+}
+</style>
 </head>
+
 <body>
 	<h1>Add book</h1>
 	<form:form method="post" modelAttribute="book">
-	<div>
-	</div>
-	Title:
-		<form:input path="title" />
-	Description:
-		<form:textarea path="description" />
-	Publisher:
-	<form:select itemValue="id" itemLabel="name"
-             path="publisher" items="${publishers}"/>
-		<input type="submit" value="Save">
+		<div>
+			Title:
+			<form:input path="title" />
+			<form:errors path="title" cssClass="error" />
+		</div>
+		<div>
+			Description:
+			<form:textarea path="description" />
+		</div>
+		<div>
+			Publisher:
+			<form:select itemValue="id" itemLabel="name" path="publisher"
+				items="${publishers}" />
+		</div>
+		<div>
+		Active:
+			<form:radiobutton path="active" value="true" />
+			<form:radiobutton path="active" value="false" />
+		</div>
+		<div>
+			<input type="submit" value="Save">
+		</div>
 	</form:form>
 </body>
 </html>
