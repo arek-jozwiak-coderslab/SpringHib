@@ -7,14 +7,12 @@ import java.lang.annotation.Target;
 import javax.validation.Constraint;
 import javax.validation.Payload;
 
-@Constraint(validatedBy = StartWithValidator.class)
-@Target({ ElementType.METHOD, ElementType.FIELD })
+@Constraint(validatedBy = RepeatAuthorValidator.class)
+@Target({ ElementType.TYPE })
 @Retention(RetentionPolicy.RUNTIME)
-public @interface StartWith {
-	String value();
-	String value2();
+public @interface RepeatAuthor {
 
-	String message() default "{startWith.error.message}";
+	String message() default "{repeatAuthor.error.message}";
 
 	Class<?>[] groups() default {};
 

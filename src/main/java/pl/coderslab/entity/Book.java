@@ -9,30 +9,40 @@ import javax.persistence.GenerationType;
 import javax.persistence.Id;
 import javax.persistence.ManyToMany;
 import javax.persistence.ManyToOne;
+import javax.validation.constraints.Min;
 import javax.validation.constraints.Size;
+import javax.validation.groups.Default;
 
 import org.hibernate.validator.constraints.NotBlank;
 
+import pl.coderslab.validator.RepeatAuthor;
+import pl.coderslab.validator.StartWith;
+import pl.coderslab.validator.ValidationGroupName;
 
 @Entity
+@RepeatAuthor
 public class Book {
 	@Id
 	@GeneratedValue(strategy = GenerationType.IDENTITY)
 	private Long id;
-	@NotBlank
-	@Size(min=3)
+	@StartWith(value = "a", value2 = "z", groups = { Default.class, ValidationGroupName.class })
+	@Size(min = 200)
 	private String title;
 	@ManyToOne
 	private Author author;
 	@ManyToOne
 	private Publisher publisher;
-	@ManyToMany(fetch=FetchType.EAGER)
-//	@ManyToMany
+	@ManyToMany(fetch = FetchType.EAGER)
+	// @ManyToMany
 	private List<Author> authors;
-	
+
+	@NotBlank(groups = { ValidationGroupName.class})
+	private String description;
+	@Min(value=1, groups = { ValidationGroupName.class })
+	private int rating;
+
 	private boolean active;
-	
-	
+
 	public boolean isActive() {
 		return active;
 	}
@@ -40,10 +50,6 @@ public class Book {
 	public void setActive(boolean active) {
 		this.active = active;
 	}
-
-	private String description;
-	private int rating;
-	
 
 	public Author getAuthor() {
 		return author;
@@ -77,7 +83,6 @@ public class Book {
 		this.title = title;
 	}
 
-
 	public Publisher getPublisher() {
 		return publisher;
 	}
@@ -104,7 +109,7 @@ public class Book {
 
 	@Override
 	public String toString() {
-		return "Book [id=" + id + ", title=" + title +  "publisher=" + publisher
-				+ ", description=" + description + ", rating=" + rating + "]";
+		return "Book [id=" + id + ", title=" + title + "publisher=" + publisher + ", description=" + description
+				+ ", rating=" + rating + "]";
 	}
 }

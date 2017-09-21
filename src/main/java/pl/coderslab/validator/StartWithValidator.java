@@ -5,8 +5,8 @@ import javax.validation.ConstraintValidatorContext;
 
 public class StartWithValidator implements ConstraintValidator<StartWith, String> {
 
-	String start;
-	String end;
+	private String start;
+	private String end;
 
 	@Override
 	public void initialize(StartWith constraintAnnotation) {
@@ -16,6 +16,7 @@ public class StartWithValidator implements ConstraintValidator<StartWith, String
 
 	@Override
 	public boolean isValid(String value, ConstraintValidatorContext context) {
+		
 		return value.startsWith(start) && value.endsWith(end);
 	}
 }
