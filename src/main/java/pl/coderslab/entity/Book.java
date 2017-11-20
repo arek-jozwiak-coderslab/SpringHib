@@ -26,14 +26,13 @@ public class Book {
 	@GeneratedValue(strategy = GenerationType.IDENTITY)
 	private Long id;
 	@StartWith(value = "a", value2 = "z", groups = { Default.class, ValidationGroupName.class })
-	@Size(min = 200)
+	@Size(min = 2)
 	private String title;
 	@ManyToOne
 	private Author author;
 	@ManyToOne
 	private Publisher publisher;
-	@ManyToMany(fetch = FetchType.EAGER)
-	// @ManyToMany
+	@ManyToMany
 	private List<Author> authors;
 
 	@NotBlank(groups = { ValidationGroupName.class})

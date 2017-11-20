@@ -1,9 +1,13 @@
 package pl.coderslab.entity;
 
+import java.util.List;
+
 import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
+import javax.persistence.ManyToMany;
+import javax.persistence.OneToMany;
 
 import pl.coderslab.validator.StartWith;
 
@@ -15,25 +19,33 @@ public class Author {
 	@StartWith(value = "a", value2 = "z")
 	private String firstName;
 	private String lastName;
-	
+	@ManyToMany(mappedBy="authors")
+	private List<Book> books;
+
 	public Long getId() {
 		return id;
 	}
+
 	public void setId(Long id) {
 		this.id = id;
 	}
+
 	public String getFirstName() {
 		return firstName;
 	}
+
 	public void setFirstName(String firstName) {
 		this.firstName = firstName;
 	}
+
 	public String getLastName() {
 		return lastName;
 	}
+
 	public void setLastName(String lastName) {
 		this.lastName = lastName;
 	}
+
 	@Override
 	public int hashCode() {
 		final int prime = 31;
@@ -43,6 +55,7 @@ public class Author {
 		result = prime * result + ((lastName == null) ? 0 : lastName.hashCode());
 		return result;
 	}
+
 	@Override
 	public boolean equals(Object obj) {
 		if (this == obj)
@@ -69,5 +82,5 @@ public class Author {
 			return false;
 		return true;
 	}
-	
+
 }
