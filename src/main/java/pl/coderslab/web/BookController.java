@@ -2,8 +2,10 @@ package pl.coderslab.web;
 
 import java.util.Collection;
 
+import javax.transaction.Transactional;
 import javax.validation.Valid;
 
+import org.hibernate.Hibernate;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
@@ -41,7 +43,7 @@ public class BookController {
 		this.publisherDao = publisherDao;
 		this.bookRepository = bookRepository;
 	}
-	
+
 	@RequestMapping("/test-repo/{id}")
 	@ResponseBody
 	public String testRepo(@PathVariable long id) {
@@ -56,8 +58,13 @@ public class BookController {
 	}
 
 	@GetMapping("/book/edit/{id}")
+	@Transactional
 	public String editBook(Model model, @PathVariable long id) {
+		Book b = bookDao.findById(id);
 		model.addAttribute("book", bookDao.findById(id));
+		if (b != null) {
+			Hibernate.initialize(b.getAuthors());
+		}
 		return "book/add";
 	}
 
@@ -99,7 +106,7 @@ public class BookController {
 		return this.publisherDao.getList();
 	}
 
-	@ModelAttribute("authors")
+	@ModelAttribute("allauthors")
 	public Collection<Author> authors() {
 		return this.authorDao.getList();
 	}

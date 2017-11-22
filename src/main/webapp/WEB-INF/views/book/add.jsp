@@ -37,13 +37,13 @@
 		<div>
 			Author:
 			<form:select itemValue="id" itemLabel="lastName" path="author"
-				items="${authors}" />
+				items="${allauthors}" />
 						<form:errors path="author" cssClass="error" />
 		</div>
 		<div>
 			Author:
-			<form:checkboxes itemValue="id" itemLabel="lastName" path="authors"
-				items="${authors}" />
+			<form:select itemValue="id" itemLabel="lastName" path="authors"
+				items="${allauthors}" />
 						<form:errors path="authors" cssClass="error" />
 		</div>
 		<div>
