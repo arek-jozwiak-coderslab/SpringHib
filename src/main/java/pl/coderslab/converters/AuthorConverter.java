@@ -7,6 +7,7 @@ import pl.coderslab.dao.AuthorDao;
 import pl.coderslab.entity.Author;
 
 public class AuthorConverter implements Converter<String, Author> {
+
 	@Autowired
 	private AuthorDao publisherDao;
 

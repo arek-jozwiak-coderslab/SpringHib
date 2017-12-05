@@ -24,6 +24,7 @@ import org.springframework.web.servlet.view.InternalResourceViewResolver;
 import org.springframework.web.servlet.view.JstlView;
 
 import pl.coderslab.converters.AuthorConverter;
+import pl.coderslab.converters.UnitConverter;
 import pl.coderslab.converters.PersonGroupConverter;
 import pl.coderslab.converters.PublisherConverter;
 
@@ -67,6 +68,7 @@ public class AppConfig extends WebMvcConfigurerAdapter {
 		registry.addConverter(getPersonGroupConverter());
 		registry.addConverter(getPublisherConverter());
 		registry.addConverter(getAuthorConverter());
+		registry.addConverter(getUnitConverter());
 	}
 	
 	@Bean
@@ -81,6 +83,11 @@ public class AppConfig extends WebMvcConfigurerAdapter {
 	@Bean
 	public AuthorConverter getAuthorConverter() {
 		return new AuthorConverter();
+	}
+
+	@Bean
+	public UnitConverter getUnitConverter() {
+		return new UnitConverter();
 	}
 
 	@Bean

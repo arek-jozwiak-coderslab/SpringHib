@@ -56,6 +56,32 @@ public class BookController {
 		model.addAttribute("book", new Book());
 		return "book/add";
 	}
+	
+	@ResponseBody
+	@Transactional
+	@GetMapping("/book/remove/{authorId}/{bookId}")
+	public String removeAuthor(@PathVariable long authorId,@PathVariable long bookId) {
+		Book b  = bookRepository.findOne(bookId);
+		Hibernate.initialize(b.getAuthors());
+		Author a = authorDao.findById(authorId);
+		
+		b.getAuthors().remove(a);
+		return "removed";
+	}
+	@ResponseBody
+	@GetMapping("/book/remove2/{authorId}/{bookId}")
+	public String removeAuthor2(@PathVariable long authorId,@PathVariable long bookId) {
+		bookRepository.deleteUsingSingleQuery("az");
+		return "removed";
+	}
+	
+	@ResponseBody
+	@GetMapping("/book/remove3/{bookId}/{authorId}")
+	public String removeAuthor3(@PathVariable long authorId,@PathVariable long bookId) {
+		bookRepository.deleteUsingSingleNativeQuery(bookId, authorId);
+
+		return "removed";
+	}
 
 	@GetMapping("/book/edit/{id}")
 	@Transactional

@@ -21,7 +21,7 @@
 				<td>${boo.author}</td>
 				<td>${boo.rating}</td>
 				<td><a href="<c:url   value="/book/edit/${boo.id}"/>">Edytuj</a>
-					<a href="">Usuń</a></td>
+					<a href="<c:url   value="/book/delete/${boo.id}"/>">Usuń</a></td>
 			</tr>
 		</c:forEach>
 	</table>
