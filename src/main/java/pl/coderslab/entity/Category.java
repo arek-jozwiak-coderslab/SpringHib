@@ -22,7 +22,7 @@ public class Category {
 	@JoinTable(name = "Cartoon", joinColumns = { @JoinColumn(name = "id") }, inverseJoinColumns = { @JoinColumn(name = "category_id") })
 	List<Cartoon> cartoons;
 	
-	public String name;
+	private String name;
 
 	public Long getId() {
 		return id;

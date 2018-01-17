@@ -13,7 +13,7 @@ public class PersonGroup {
 	@GeneratedValue(strategy = GenerationType.IDENTITY)
 	private Long id;
 	
-	public String name;
+	private String name;
 
 	public Long getId() {
 		return id;
