@@ -9,16 +9,16 @@ import pl.coderslab.entity.Person;
 @Service
 public class PersonServiceImpl implements PersonService {
 
-	private final PersonDao personDao;
-	
-	@Autowired
-	public PersonServiceImpl(PersonDao personDao) {
-		this.personDao = personDao;
-	}
+    private final PersonDao personDao;
 
-	@Override
-	public Person create(Person person) {
-		return personDao.savePerson(person);
-	}
+    @Autowired
+    public PersonServiceImpl(PersonDao personDao) {
+        this.personDao = personDao;
+    }
+
+    @Override
+    public Person create(Person person) {
+        return personDao.savePerson(person);
+    }
 
 }

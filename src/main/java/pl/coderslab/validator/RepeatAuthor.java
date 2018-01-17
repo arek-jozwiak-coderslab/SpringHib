@@ -12,9 +12,9 @@ import javax.validation.Payload;
 @Retention(RetentionPolicy.RUNTIME)
 public @interface RepeatAuthor {
 
-	String message() default "{repeatAuthor.error.message}";
+    String message() default "{repeatAuthor.error.message}";
 
-	Class<?>[] groups() default {};
+    Class<?>[] groups() default {};
 
-	Class<? extends Payload>[] payload() default {};
+    Class<? extends Payload>[] payload() default {};
 }

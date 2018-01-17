@@ -11,12 +11,13 @@ import javax.validation.Payload;
 @Target({ ElementType.METHOD, ElementType.FIELD })
 @Retention(RetentionPolicy.RUNTIME)
 public @interface StartWith {
-	String value();
-	String value2();
+    String value();
 
-	String message() default "{startWith.error.message}";
+    String value2();
 
-	Class<?>[] groups() default {};
+    String message() default "{startWith.error.message}";
 
-	Class<? extends Payload>[] payload() default {};
+    Class<?>[] groups() default {};
+
+    Class<? extends Payload>[] payload() default {};
 }
