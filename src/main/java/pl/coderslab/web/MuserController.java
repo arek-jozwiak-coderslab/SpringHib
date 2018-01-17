@@ -20,28 +20,28 @@ import pl.coderslab.repository.UserRepository;
 @Controller
 public class MuserController {
 
-	private final UserRepository userRepository;
-	private final UnitRepository unitRepository;
+    private final UserRepository userRepository;
+    private final UnitRepository unitRepository;
 
-	@Autowired
-	public MuserController(UserRepository muserRepository, UnitRepository munitRepository) {
-		this.userRepository = muserRepository;
-		this.unitRepository = munitRepository;
-	}
+    @Autowired
+    public MuserController(UserRepository muserRepository, UnitRepository munitRepository) {
+        this.userRepository = muserRepository;
+        this.unitRepository = munitRepository;
+    }
 
-	@GetMapping("/user/edit/{id}")
-	@Transactional
-	public String editBook(Model model, @PathVariable long id) {
-		User user = userRepository.findOne(id);
-		if (user != null) {
-			Hibernate.initialize(user.getUnits());
-		}
-		model.addAttribute("user", user);
-		return "user/addm";
-	}
+    @GetMapping("/user/edit/{id}")
+    @Transactional
+    public String editBook(Model model, @PathVariable long id) {
+        User user = userRepository.findOne(id);
+        if (user != null) {
+            Hibernate.initialize(user.getUnits());
+        }
+        model.addAttribute("user", user);
+        return "user/addm";
+    }
 
-	@ModelAttribute("allutnits")
-	public Collection<Unit> units() {
-		return this.unitRepository.findAll();
-	}
+    @ModelAttribute("allutnits")
+    public Collection<Unit> units() {
+        return this.unitRepository.findAll();
+    }
 }

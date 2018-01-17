@@ -7,15 +7,15 @@ import org.springframework.web.bind.annotation.ResponseBody;
 @Controller
 public class HomeController {
 
-	@GetMapping("/")
-	public String indexAction() {
-		return "index";
-	}
+    @GetMapping("/")
+    public String indexAction() {
+        return "index";
+    }
 
-	@GetMapping("/testAction")
-	@ResponseBody
-	public String testAction() {
-		return "testAction";
-	}
+    @GetMapping("/testAction")
+    @ResponseBody
+    public String testAction() {
+        return "testAction";
+    }
 
 }
