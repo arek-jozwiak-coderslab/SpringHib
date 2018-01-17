@@ -15,31 +15,30 @@ import pl.coderslab.repository.BookRepository;
 @Controller
 public class RepoController {
 
-	private final BookRepository bookRepository;
+    private final BookRepository bookRepository;
 
-	@Autowired
-	public RepoController(BookRepository bookRepository) {
-		this.bookRepository = bookRepository;
-	}
-	
-	@RequestMapping("/checkBook")
-	@ResponseBody
-	public String checkRepoBook(){
-		List<Book> books = bookRepository.findAll();
-		return books.toString(); 
-	}
-	
-	
-	@GetMapping("/checkrepo")
-	@ResponseBody
-	public String showList(Model model) {
-		StringBuilder builder = new StringBuilder();
-		List<Book> books= bookRepository.findBooksByTitle("Thinking in java");
-		builder.append(books.toString());
+    @Autowired
+    public RepoController(BookRepository bookRepository) {
+        this.bookRepository = bookRepository;
+    }
 
-		List<Book> books2= bookRepository.findByTitleIgnoreCaseContaining("Thinking");
-		builder.append("<br/><hr/>");
-		builder.append(books2.toString());
-		return builder.toString();
-	}
+    @RequestMapping("/checkBook")
+    @ResponseBody
+    public String checkRepoBook() {
+        List<Book> books = bookRepository.findAll();
+        return books.toString();
+    }
+
+    @GetMapping("/checkrepo")
+    @ResponseBody
+    public String showList(Model model) {
+        StringBuilder builder = new StringBuilder();
+        List<Book> books = bookRepository.findBooksByTitle("Thinking in java");
+        builder.append(books.toString());
+
+        List<Book> books2 = bookRepository.findByTitleIgnoreCaseContaining("Thinking");
+        builder.append("<br/><hr/>");
+        builder.append(books2.toString());
+        return builder.toString();
+    }
 }

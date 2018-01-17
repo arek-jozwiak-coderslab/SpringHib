@@ -16,23 +16,23 @@ import pl.coderslab.repository.PublisherRepository;
 @RequestMapping("/publisher")
 public class PublisherController {
 
-	private final PublisherRepository publisherRepository;
+    private final PublisherRepository publisherRepository;
 
-	@Autowired
-	public PublisherController(PublisherRepository publisherRepository) {
-		this.publisherRepository = publisherRepository;
-	}
+    @Autowired
+    public PublisherController(PublisherRepository publisherRepository) {
+        this.publisherRepository = publisherRepository;
+    }
 
-	@RequestMapping("/{id}/books")
-	@ResponseBody
-	@Transactional
-	public String checkRepoBook(@PathVariable long id) {
-		Publisher publisher =  publisherRepository.findOne(id);
-		if(publisher!=null){
-			Hibernate.initialize(publisher.getBooks());
-			System.out.println(publisher.getBooks());
-		}
-		return "res";
-	}
+    @RequestMapping("/{id}/books")
+    @ResponseBody
+    @Transactional
+    public String checkRepoBook(@PathVariable long id) {
+        Publisher publisher = publisherRepository.findOne(id);
+        if (publisher != null) {
+            Hibernate.initialize(publisher.getBooks());
+            System.out.println(publisher.getBooks());
+        }
+        return "res";
+    }
 
 }

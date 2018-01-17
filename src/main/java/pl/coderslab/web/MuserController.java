@@ -12,7 +12,6 @@ import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.ModelAttribute;
 import org.springframework.web.bind.annotation.PathVariable;
 
-import pl.coderslab.entity.Author;
 import pl.coderslab.entity.Unit;
 import pl.coderslab.entity.User;
 import pl.coderslab.repository.UnitRepository;
