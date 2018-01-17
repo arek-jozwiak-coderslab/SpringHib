@@ -35,69 +35,71 @@ import pl.coderslab.converters.PublisherConverter;
 @EnableJpaRepositories(basePackages = "pl.coderslab.repository")
 public class AppConfig extends WebMvcConfigurerAdapter {
 
-	@Override
-	public void configureDefaultServletHandling(DefaultServletHandlerConfigurer configurer) {
-		configurer.enable();
-	}
+    @Override
+    public void configureDefaultServletHandling(DefaultServletHandlerConfigurer configurer) {
+        configurer.enable();
+    }
 
-	@Bean
-	public LocalEntityManagerFactoryBean entityManagerFactory() {
-		LocalEntityManagerFactoryBean emfb = new LocalEntityManagerFactoryBean();
-		emfb.setPersistenceUnitName("bookstorePersistenceUnit");
-		return emfb;
-	}
+    @Bean
+    public LocalEntityManagerFactoryBean entityManagerFactory() {
+        LocalEntityManagerFactoryBean emfb = new LocalEntityManagerFactoryBean();
+        emfb.setPersistenceUnitName("bookstorePersistenceUnit");
+        return emfb;
+    }
 
-	@Bean
-	public JpaTransactionManager transactionManager(EntityManagerFactory emf) {
-		JpaTransactionManager tm = new JpaTransactionManager(emf);
-		return tm;
-	}
+    @Bean
+    public JpaTransactionManager transactionManager(EntityManagerFactory emf) {
+        JpaTransactionManager tm = new JpaTransactionManager(emf);
+        return tm;
+    }
 
-	@Bean
-	public ViewResolver viewResolver() {
-		InternalResourceViewResolver viewResolver = new InternalResourceViewResolver();
-		viewResolver.setViewClass(JstlView.class);
+    @Bean
+    public ViewResolver viewResolver() {
+        InternalResourceViewResolver viewResolver = new InternalResourceViewResolver();
+        viewResolver.setViewClass(JstlView.class);
 
-		viewResolver.setPrefix("/WEB-INF/views/");
-		viewResolver.setSuffix(".jsp");
-		return viewResolver;
-	}
+        viewResolver.setPrefix("/WEB-INF/views/");
+        viewResolver.setSuffix(".jsp");
+        return viewResolver;
+    }
 
-	@Override
-	public void addFormatters(FormatterRegistry registry) {
-		registry.addConverter(getPersonGroupConverter());
-		registry.addConverter(getPublisherConverter());
-		registry.addConverter(getAuthorConverter());
-		registry.addConverter(getUnitConverter());
-	}
-	
-	@Bean
-	public PublisherConverter getPublisherConverter() {
-		return new PublisherConverter();
-	}
+    @Override
+    public void addFormatters(FormatterRegistry registry) {
+        registry.addConverter(getPersonGroupConverter());
+        registry.addConverter(getPublisherConverter());
+        registry.addConverter(getAuthorConverter());
+        registry.addConverter(getUnitConverter());
+    }
 
-	@Bean
-	public PersonGroupConverter getPersonGroupConverter() {
-		return new PersonGroupConverter();
-	}
-	@Bean
-	public AuthorConverter getAuthorConverter() {
-		return new AuthorConverter();
-	}
+    @Bean
+    public PublisherConverter getPublisherConverter() {
+        return new PublisherConverter();
+    }
 
-	@Bean
-	public UnitConverter getUnitConverter() {
-		return new UnitConverter();
-	}
+    @Bean
+    public PersonGroupConverter getPersonGroupConverter() {
+        return new PersonGroupConverter();
+    }
 
-	@Bean
-	public Validator validator() {
-		return new LocalValidatorFactoryBean();
-	}
-	
-	@Bean(name="localeResolver")
-	public LocaleContextResolver getLocaleContextResolver() {
-	    SessionLocaleResolver localeResolver = new SessionLocaleResolver();
-	    localeResolver.setDefaultLocale(new Locale("pl","PL"));
-	    return localeResolver; }
+    @Bean
+    public AuthorConverter getAuthorConverter() {
+        return new AuthorConverter();
+    }
+
+    @Bean
+    public UnitConverter getUnitConverter() {
+        return new UnitConverter();
+    }
+
+    @Bean
+    public Validator validator() {
+        return new LocalValidatorFactoryBean();
+    }
+
+    @Bean(name = "localeResolver")
+    public LocaleContextResolver getLocaleContextResolver() {
+        SessionLocaleResolver localeResolver = new SessionLocaleResolver();
+        localeResolver.setDefaultLocale(new Locale("pl", "PL"));
+        return localeResolver;
+    }
 }

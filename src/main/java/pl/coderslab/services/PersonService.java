@@ -4,5 +4,5 @@ import pl.coderslab.entity.Person;
 
 public interface PersonService {
 
-	Person create (Person person);
+    Person create(Person person);
 }

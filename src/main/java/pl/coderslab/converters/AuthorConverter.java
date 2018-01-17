@@ -8,12 +8,12 @@ import pl.coderslab.entity.Author;
 
 public class AuthorConverter implements Converter<String, Author> {
 
-	@Autowired
-	private AuthorDao publisherDao;
+    @Autowired
+    private AuthorDao publisherDao;
 
-	@Override
-	public Author convert(String source) {
-		Author group = publisherDao.findById(Integer.parseInt(source));
-		return group;
-	}
+    @Override
+    public Author convert(String source) {
+        Author group = publisherDao.findById(Integer.parseInt(source));
+        return group;
+    }
 }
