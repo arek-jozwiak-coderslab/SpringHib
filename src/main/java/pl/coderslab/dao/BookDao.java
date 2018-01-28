@@ -16,27 +16,27 @@ import pl.coderslab.entity.PersonGroup;
 @Component
 @Transactional
 public class BookDao {
-	@PersistenceContext
-	EntityManager entityManager;
+    @PersistenceContext
+    EntityManager entityManager;
 
-	public void saveBook(Book entity) {
-		entityManager.persist(entity);
-	}
+    public void saveBook(Book entity) {
+        entityManager.persist(entity);
+    }
 
-	public List<Book> getList() {
-		Query query = entityManager.createQuery("SELECT b FROM Book b");
-		List<Book> books = query.getResultList();
-		return books;
-	}
+    public List<Book> getList() {
+        Query query = entityManager.createQuery("SELECT b FROM Book b");
+        List<Book> books = query.getResultList();
+        return books;
+    }
 
-	public Book findById(long id) {
+    public Book findById(long id) {
 
-		return entityManager.find(Book.class, id);
-	}
+        return entityManager.find(Book.class, id);
+    }
 
-	public Book findByIdWithAuthors(long id) {
-		Book b = entityManager.find(Book.class, id);
-		Hibernate.initialize(b.getAuthors());
-		return b;
-	}
+    public Book findByIdWithAuthors(long id) {
+        Book b = entityManager.find(Book.class, id);
+        Hibernate.initialize(b.getAuthors());
+        return b;
+    }
 }

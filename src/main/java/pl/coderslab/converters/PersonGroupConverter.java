@@ -12,7 +12,7 @@ public class PersonGroupConverter implements Converter<String, PersonGroup> {
 
     @Override
     public PersonGroup convert(String source) {
-        PersonGroup group = personGroupDao.findById(Integer.parseInt(source));
-        return group;
+        return  personGroupDao.findById(Integer.parseInt(source));
+
     }
 }

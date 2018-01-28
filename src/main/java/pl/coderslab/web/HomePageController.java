@@ -41,7 +41,7 @@ public class HomePageController {
     }
 
     public Collection<String> skills() {
-        List<String> skills = new ArrayList<String>();
+        List<String> skills = new ArrayList<>();
         skills.add("Java");
         skills.add("Php");
         skills.add("python");

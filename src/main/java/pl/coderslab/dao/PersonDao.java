@@ -16,15 +16,15 @@ import pl.coderslab.entity.Person;
 public class PersonDao {
     @PersistenceContext
     EntityManager entityManager;
-    
+
     public Person savePerson(Person entity) {
         entityManager.persist(entity);
         return entity;
     }
-    
-    public List<Person> getList(){
-    	Query query = entityManager.createQuery("SELECT p FROM Person p");
-    	List<Person> books = query.getResultList();
-    	return books;
+
+    @SuppressWarnings("unchecked")
+    public List<Person> getList() {
+        Query query = entityManager.createQuery("SELECT p FROM Person p");
+        return query.getResultList();
     }
 }
