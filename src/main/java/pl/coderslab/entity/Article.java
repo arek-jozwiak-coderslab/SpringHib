@@ -1,22 +1,36 @@
 package pl.coderslab.entity;
 
-import javax.persistence.Entity;
-import javax.persistence.GeneratedValue;
-import javax.persistence.GenerationType;
-import javax.persistence.Id;
-import javax.persistence.ManyToOne;
+import pl.coderslab.validator.CategoryLimit;
+
+import javax.persistence.*;
+import java.util.List;
 
 @Entity
+@CategoryLimit("1")
 public class Article {
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Long id;
-    @ManyToOne
-    private Category category;
+    @ManyToMany
+    private List<Category> categories;
     @ManyToOne
     private Author author;
-
     private String content;
+
+    @Override
+    public String toString() {
+        return "Article{" +
+                "id=" + id +
+                '}';
+    }
+
+    public String getContent() {
+        return content;
+    }
+
+    public void setContent(String content) {
+        this.content = content;
+    }
 
     public Long getId() {
         return id;
@@ -26,12 +40,12 @@ public class Article {
         this.id = id;
     }
 
-    public Category getCategory() {
-        return category;
+    public List<Category> getCategories() {
+        return categories;
     }
 
-    public void setCategory(Category category) {
-        this.category = category;
+    public void setCategories(List<Category> categories) {
+        this.categories = categories;
     }
 
     public Author getAuthor() {
@@ -40,14 +54,6 @@ public class Article {
 
     public void setAuthor(Author author) {
         this.author = author;
-    }
-
-    public String getContent() {
-        return content;
-    }
-
-    public void setContent(String content) {
-        this.content = content;
     }
 
 }

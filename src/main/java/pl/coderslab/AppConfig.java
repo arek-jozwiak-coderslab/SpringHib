@@ -1,10 +1,5 @@
 package pl.coderslab;
 
-import java.util.Locale;
-
-import javax.persistence.EntityManagerFactory;
-import javax.validation.Validator;
-
 import org.springframework.context.annotation.Bean;
 import org.springframework.context.annotation.ComponentScan;
 import org.springframework.context.annotation.Configuration;
@@ -23,11 +18,11 @@ import org.springframework.web.servlet.config.annotation.WebMvcConfigurerAdapter
 import org.springframework.web.servlet.i18n.SessionLocaleResolver;
 import org.springframework.web.servlet.view.InternalResourceViewResolver;
 import org.springframework.web.servlet.view.JstlView;
+import pl.coderslab.converters.*;
 
-import pl.coderslab.converters.AuthorConverter;
-import pl.coderslab.converters.PersonGroupConverter;
-import pl.coderslab.converters.PublisherConverter;
-import pl.coderslab.converters.UnitConverter;
+import javax.persistence.EntityManagerFactory;
+import javax.validation.Validator;
+import java.util.Locale;
 
 @Configuration
 @EnableWebMvc
@@ -70,6 +65,7 @@ public class AppConfig extends WebMvcConfigurerAdapter {
         registry.addConverter(getPublisherConverter());
         registry.addConverter(getAuthorConverter());
         registry.addConverter(getUnitConverter());
+        registry.addConverter(getCategoryConverter());
     }
 
     @Bean
@@ -80,6 +76,11 @@ public class AppConfig extends WebMvcConfigurerAdapter {
     @Bean
     public PersonGroupConverter getPersonGroupConverter() {
         return new PersonGroupConverter();
+    }
+
+    @Bean
+    public CategoryConverter getCategoryConverter() {
+        return new CategoryConverter();
     }
 
     @Bean

@@ -1,9 +1,9 @@
 package pl.coderslab.validator;
 
+import pl.coderslab.entity.Book;
+
 import javax.validation.ConstraintValidator;
 import javax.validation.ConstraintValidatorContext;
-
-import pl.coderslab.entity.Book;
 
 public class RepeatAuthorValidator implements ConstraintValidator<RepeatAuthor, Book> {
 

@@ -1,14 +1,7 @@
 package pl.coderslab.entity;
 
+import javax.persistence.*;
 import java.util.List;
-
-import javax.persistence.Entity;
-import javax.persistence.GeneratedValue;
-import javax.persistence.GenerationType;
-import javax.persistence.Id;
-import javax.persistence.JoinColumn;
-import javax.persistence.JoinTable;
-import javax.persistence.OneToMany;
 
 @Entity
 public class Category {
@@ -21,6 +14,23 @@ public class Category {
     @JoinTable(name = "Cartoon", joinColumns = { @JoinColumn(name = "id") }, inverseJoinColumns = {
             @JoinColumn(name = "category_id") })
     List<Cartoon> cartoons;
+
+    @ManyToMany(mappedBy = "categories")
+    private List<Article> articles;
+
+
+
+    public void setCartoons(List<Cartoon> cartoons) {
+        this.cartoons = cartoons;
+    }
+
+    public List<Article> getArticles() {
+        return articles;
+    }
+
+    public void setArticles(List<Article> articles) {
+        this.articles = articles;
+    }
 
     private String name;
 
@@ -38,6 +48,13 @@ public class Category {
 
     public void setName(String name) {
         this.name = name;
+    }
+
+    @Override
+    public String toString() {
+        return "Category{" +
+                "name='" + name + '\'' +
+                '}';
     }
 
 }
